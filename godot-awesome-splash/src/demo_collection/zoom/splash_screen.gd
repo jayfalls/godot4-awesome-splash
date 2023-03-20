@@ -1,23 +1,23 @@
 extends AweSplashScreenViewport
 
-onready var logo_container := $ViewportContainer/Viewport/AspectNode/LogoContainer
-onready var logo := $ViewportContainer/Viewport/AspectNode/LogoContainer/Logo
+@onready var logo_container := $SubViewportContainer/SubViewport/AspectNode/LogoContainer
+@onready var logo := $SubViewportContainer/SubViewport/AspectNode/LogoContainer/Logo
 
-onready var info_node := $ViewportContainer/Viewport/AspectNode/InfoNode
-onready var title_node := $ViewportContainer/Viewport/AspectNode/TitleNode
-onready var bg_color := $CanvasLayer/ColorRect
+@onready var info_node := $SubViewportContainer/SubViewport/AspectNode/InfoNode
+@onready var title_node := $SubViewportContainer/SubViewport/AspectNode/TitleNode
+@onready var bg_color := $CanvasLayer/ColorRect
 
-export(String, FILE) var logo_path = "res://src/demo_collection/zoom/src/logo.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
+@export var logo_path = "res://src/demo_collection/zoom/src/logo.png" # (String, FILE)
+@export var title: String := "GODOT"
+@export var description: String := "Game engine"
 
-export (float) var duration := 2.0
-export (Color) var background_color := Color.black
+@export (float) var duration := 2.0
+@export (Color) var background_color := Color.BLACK
 
-export (Color) var logo_color :=  Color8(255, 255, 255, 255)
-export (Color) var font_color := Color.white
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export (Color) var logo_color :=  Color8(255, 255, 255, 255)
+@export (Color) var font_color := Color.WHITE
+@export (float) var title_font_size := 230.0
+@export (float) var description_font_size := 120.0
 
 
 var time_appear: float
@@ -31,7 +31,7 @@ func get_name() -> String:
 	return "Zoom"
 
 func _ready():
-	._ready()
+	super._ready()
 
 
 func config():
@@ -78,7 +78,7 @@ func main_animation():
 		]),
 		gd.perform("finished_animation", self)
 	])\
-	.start(self)
+	super.start(self)
 
 
 func update_appear(_value: float, eased_value: float, _delta: float):

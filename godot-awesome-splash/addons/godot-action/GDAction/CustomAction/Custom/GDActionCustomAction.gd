@@ -11,7 +11,7 @@ func _create_action_node(key: String, node):
 	return action_node
 
 
-func _init(selector: String, on_target: Node, duration: float, gd_utils: Node):
+func _init(selector: String,on_target: Node,duration: float,gd_utils: Node):
 	super(duration, gd_utils)
 	self.selector = selector
 	self.on_target = on_target

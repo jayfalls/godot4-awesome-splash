@@ -3,7 +3,7 @@ class_name GDActionRepeatForever extends GDActionInstant
 var action: GDAction
 
 
-func _init(action: GDAction, gd_utils: Node):
+func _init(action: GDAction,gd_utils: Node):
 	super(gd_utils)
 	self.action = action
 

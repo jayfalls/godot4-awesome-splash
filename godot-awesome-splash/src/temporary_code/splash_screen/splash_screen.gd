@@ -1,28 +1,28 @@
 extends AweSplashScreen
 
-onready var logo_container := $AspectNode/LogoContainer
-onready var logo := $AspectNode/LogoContainer/Logo
+@onready var logo_container: Node2D = $AspectNode/LogoContainer
+@onready var logo: TextureRect = $AspectNode/LogoContainer/Logo
 
-onready var info_node := $AspectNode/InfoNode
-onready var title_node := $AspectNode/TitleNode
-onready var bg_color := $CanvasLayer/ColorRect
-
-
-const LOGO_PATH := "res://src/demo_collection/temp/logo.png"
-const TITLE := "GODOT"
-const DESCRIPTION := "Game engine"
+@onready var info_node: AweTextNode = $AspectNode/InfoNode
+@onready var title_node: AweListTextNode = $AspectNode/TitleNode
+@onready var bg_color: ColorRect = $CanvasLayer/ColorRect
 
 
-const BG_COLOR = Color8(0, 0, 0, 255)
-const LOGO_COLOR = Color8(255, 255, 255, 255)
-const TITLE_COLOR = Color8(255, 255, 255, 255)
-const DESCRIPTION_COLOR = Color8(255, 255, 255, 255)
-
-const TITLE_FONT_SIZE = 230
-const DESCRIPT_FONT_SIZE = 120
+const LOGO_PATH: String = "res://src/demo_collection/temp/logo.png"
+const TITLE: String = "GODOT"
+const DESCRIPTION: String = "Game engine"
 
 
-func get_name() -> String:
+const BG_COLOR: Color = Color8(0, 0, 0, 255)
+const LOGO_COLOR: Color = Color8(255, 255, 255, 255)
+const TITLE_COLOR: Color = Color8(255, 255, 255, 255)
+const DESCRIPTION_COLOR: Color = Color8(255, 255, 255, 255)
+
+const TITLE_FONT_SIZE: int = 230
+const DESCRIPT_FONT_SIZE: int = 120
+
+
+func get_name() -> StringName:
 	return "Temp"
 
 

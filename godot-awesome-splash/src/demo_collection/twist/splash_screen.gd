@@ -1,27 +1,27 @@
 extends AweSplashScreen
 
-onready var trail_node := $Trail2D
+@onready var trail_node := $Trail2D
 
-onready var title_node := $AspectNode/TitleNode
-onready var info_node := $AspectNode/InfoNode
-onready var background := $CanvasLayer/ColorRect
+@onready var title_node := $AspectNode/TitleNode
+@onready var info_node := $AspectNode/InfoNode
+@onready var background := $CanvasLayer/ColorRect
 
-onready var center_node := $AspectNode/CenterNode
-onready var logo_container := $AspectNode/CenterNode/LogoContainer
-onready var logo := $AspectNode/CenterNode/LogoContainer/Logo
-onready var circle := $AspectNode/CenterNode/LogoContainer/Circle
-onready var small_circle := $AspectNode/CenterNode/LogoContainer/SmallCircle
+@onready var center_node := $AspectNode/CenterNode
+@onready var logo_container := $AspectNode/CenterNode/LogoContainer
+@onready var logo := $AspectNode/CenterNode/LogoContainer/Logo
+@onready var circle := $AspectNode/CenterNode/LogoContainer/Circle
+@onready var small_circle := $AspectNode/CenterNode/LogoContainer/SmallCircle
 
 
-export(String, FILE) var logo_path = "res://src/demo_collection/twist/src/logo.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
+@export var logo_path = "res://src/demo_collection/twist/src/logo.png" # (String, FILE)
+@export var title: String := "GODOT"
+@export var description: String := "Game engine"
 
-export (Color) var background_color = Color8(0, 0, 0, 255)
-export (Color) var logo_color =  Color8(255, 255, 255, 255)
-export (Color) var font_color := Color.white
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export (Color) var background_color = Color8(0, 0, 0, 255)
+@export (Color) var logo_color =  Color8(255, 255, 255, 255)
+@export (Color) var font_color := Color.WHITE
+@export (float) var title_font_size := 230.0
+@export (float) var description_font_size := 120.0
 
 
 const SHAKE_TEXT_TIME = 0.2
@@ -74,7 +74,7 @@ func config():
 	
 	small_circle.modulate.a = 1
 	
-	circle.rect_scale = Vector2(1, 1)
+	circle.scale = Vector2(1, 1)
 	circle.visible = false
 	circle.modulate.a = 1
 	

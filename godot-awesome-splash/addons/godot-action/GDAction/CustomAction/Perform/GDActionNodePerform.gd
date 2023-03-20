@@ -9,7 +9,7 @@ func get_class() -> String:
 	return "GDActionNodePerform"
 
 
-func _init(action, key, node):
+func _init(action,key,node):
 	super(action, key, node)
 
 

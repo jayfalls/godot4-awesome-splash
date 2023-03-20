@@ -1,25 +1,25 @@
 extends AweSplashScreenViewport
 
-onready var logo_container := $ViewportContainer/Viewport/AspectNode/LogoContainer
-onready var logo := $ViewportContainer/Viewport/AspectNode/LogoContainer/Logo
+@onready var logo_container := $SubViewportContainer/SubViewport/AspectNode/LogoContainer
+@onready var logo := $SubViewportContainer/SubViewport/AspectNode/LogoContainer/Logo
 
-onready var info_node := $ViewportContainer/Viewport/AspectNode/InfoNode
-onready var title_node := $ViewportContainer/Viewport/AspectNode/TitleNode
-onready var bg_color := $CanvasLayer/ColorRect
+@onready var info_node := $SubViewportContainer/SubViewport/AspectNode/InfoNode
+@onready var title_node := $SubViewportContainer/SubViewport/AspectNode/TitleNode
+@onready var bg_color := $CanvasLayer/ColorRect
 
-export(String, FILE) var logo_path = "res://src/demo_collection/dark/src/logo.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
+@export var logo_path = "res://src/demo_collection/dark/src/logo.png" # (String, FILE)
+@export var title: String := "GODOT"
+@export var description: String := "Game engine"
 
-export (float) var duration := 4.0
-export (Color) var background_color = Color8(0, 0, 0, 255)
-export (Color) var vfx_color = Color8(59, 235, 38, 255)
+@export (float) var duration := 4.0
+@export (Color) var background_color = Color8(0, 0, 0, 255)
+@export (Color) var vfx_color = Color8(59, 235, 38, 255)
 
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export (float) var title_font_size := 230.0
+@export (float) var description_font_size := 120.0
 
 var logo_color =  Color8(255, 255, 255, 255)
-var font_color := Color.white
+var font_color := Color.WHITE
 
 
 # config shader hologram
@@ -32,7 +32,7 @@ func get_name() -> String:
 	return "Dark"
 
 func _ready():
-	._ready()
+	super._ready()
 	config()
 
 
@@ -85,5 +85,5 @@ func main_animation():
 		gd.fade_alpha_to(0.0, duration * 0.2),
 		gd.perform("finished_animation", self) # finished and move other screen
 	])\
-	.start(self.aspect_node)
+	super.start(self.aspect_node)
 

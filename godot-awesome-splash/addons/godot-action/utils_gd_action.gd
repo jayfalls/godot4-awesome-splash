@@ -3,7 +3,7 @@ extends Node
 @onready var ease_func: GDEaseFunc = $ease_func
 @onready var _cache = $cache
 
-# Animating a Node's Position in a Linear Path
+# Animating a Node's Position in a Linear Path3D
 # Animate linear node movement.
 func move_to(target_position: Vector2, duration: float) -> GDAction:
 	return GDActionMoveTo.new(target_position.x, target_position.y, duration, self)

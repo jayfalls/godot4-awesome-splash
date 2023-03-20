@@ -1,16 +1,18 @@
-tool
+@tool
+@icon("res://addons/awesome_splash/assets/icon/splash_screen_icon.png")
 extends Node2D
-class_name AweSplashScreen, "res://addons/awesome_splash/assets/icon/splash_screen_icon.png"
-
+class_name AweSplashScreen
 signal finished
 
-export(bool) var is_skip_appear_transition = false
-export(bool) var is_skip_disappear_transition = false
+@export var is_skip_appear_transition: bool = false
+@export var is_skip_disappear_transition: bool = false
 
-onready var aspect_node: AspectNode setget ,_get_aspect_node
-onready var outline_frame: Control setget, _get_outline_frame
+@onready var aspect_node: AspectNode : get = _get_aspect_node
+@onready var outline_frame: Control : 
+	get:
+		return _get_outline_frame()
 
-var origin_size: Vector2  setget , _get_origin_size
+var origin_size: Vector2  : get = _get_origin_size
 
 
 ### BUILD IN ENGINE METHODS ====================================================
@@ -21,13 +23,13 @@ func _ready():
 		self.outline_frame.visible = false
 
 
-func _get_configuration_warning():
-	var warnings = PoolStringArray()
+func _get_configuration_warnings():
+	var warnings = PackedStringArray()
 	if not self.outline_frame:
 		warnings.append("%s is missing a AspectNode" % name)
 		warnings.append("You can add AspectNode from \"Instance child scene\" button ")
 		warnings.append("or you can drag and drop AspectNode.tscn from addons/awesome_splash/")
-	return warnings.join("\n")
+	return "\n".join(warnings)
 
 ### PUBLIC METHODS =============================================================
 
@@ -45,10 +47,10 @@ func load_texture(path: String) -> ImageTexture:
 	if stream_texture == null:
 		print("%s is load fail" % path)
 		return texture
-	image = stream_texture.get_data()
-	image.lock()
+	image = stream_texture.get_image()
+	false # image.lock() # TODOConverter40, Image no longer requires locking, `false` helps to not break one line if/else, so it can freely be removed
 	
-	texture.create_from_image(image, 0)
+	texture.create_from_image(image) #,0
 	return texture
 
 ### PRIVATE METHODS ============================================================
@@ -90,7 +92,7 @@ func skip():
 
 ### VIRTUAL FUNC ===============================================================
 
-func get_name() -> String:
+func get_name() -> StringName:
 	return ""
 
 

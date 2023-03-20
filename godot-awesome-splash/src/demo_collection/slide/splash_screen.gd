@@ -1,22 +1,22 @@
 extends AweSplashScreen
 
-onready var logo := $AspectNode/Logo
-onready var logo_texture := $AspectNode/Logo/Texture
-onready var info_node := $AspectNode/InfoNode
-onready var title_node := $AspectNode/TitleNode
-onready var background := $CanvasLayer/ColorRect
+@onready var logo := $AspectNode/Logo
+@onready var logo_texture := $AspectNode/Logo/Texture2D
+@onready var info_node := $AspectNode/InfoNode
+@onready var title_node := $AspectNode/TitleNode
+@onready var background := $CanvasLayer/ColorRect
 
 
-export(String, FILE) var logo_path = "res://src/demo_collection/slide/icon_color.png"
-export(String) var title := "GODOT"
-export(String) var description := "Game engine"
+@export var logo_path = "res://src/demo_collection/slide/icon_color.png" # (String, FILE)
+@export var title: String := "GODOT"
+@export var description: String := "Game engine"
 
-export (Color) var background_color = Color8(240, 240, 240, 255)
-export (Color) var logo_color =  Color8(255, 255, 255, 255)
-export (Color) var title_font_color := Color8(56, 57, 58, 255)
-export (Color) var description_font_color := Color8(98, 99, 102, 255)
-export (float) var title_font_size := 230.0
-export (float) var description_font_size := 120.0
+@export (Color) var background_color = Color8(240, 240, 240, 255)
+@export (Color) var logo_color =  Color8(255, 255, 255, 255)
+@export (Color) var title_font_color := Color8(56, 57, 58, 255)
+@export (Color) var description_font_color := Color8(98, 99, 102, 255)
+@export (float) var title_font_size := 230.0
+@export (float) var description_font_size := 120.0
 
 
 const DISTANCE_MOVE = 3000

@@ -4,7 +4,7 @@ var count: int = 1
 var action: GDAction
 
 
-func _init(action: GDAction, count: int, gd_utils: Node):
+func _init(action: GDAction,count: int,gd_utils: Node):
 	super(gd_utils)
 	self.count = count
 	self.action = action

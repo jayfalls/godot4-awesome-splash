@@ -3,7 +3,7 @@ class_name GDActionVisibility extends GDActionInstant
 var is_hide: bool
 
 
-func _init(is_hide: bool, gd_utils: Node):
+func _init(is_hide: bool,gd_utils: Node):
 	super(gd_utils)
 	self.is_hide = is_hide
 

@@ -7,7 +7,7 @@ func get_class() -> String:
 	return "GDActionNodeScaleBy"
 
 
-func _init(action, key, node):
+func _init(action,key,node):
 	super(action, key, node)
 
 
@@ -17,7 +17,7 @@ func _update(value: float, eased_value: float, delta: float):
 			node.scale += self.scale_velocity * delta
 		
 		NodeType.CONTROL:
-			node.rect_scale += self.scale_velocity * delta
+			node.scale += self.scale_velocity * delta
 
 
 func scale_by(by_vector_scale: Vector2, duration: float, delay: float, speed: float):

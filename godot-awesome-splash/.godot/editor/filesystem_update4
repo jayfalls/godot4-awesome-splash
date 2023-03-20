@@ -1,0 +1,5 @@
+res://default_env.tres
+res://src/demo_collection/aqua/aqua.tscn
+res://addons/awesome_splash/core/AspectNode.gd
+res://src/preview_demo/PreviewDemo.tscn
+res://addons/awesome_splash/core/AweSplashScreen.gd

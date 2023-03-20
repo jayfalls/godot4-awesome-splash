@@ -1,16 +1,19 @@
+@icon("res://addons/awesome_splash/assets/icon/text_node_icon.png")
 extends Node2D
-class_name AweTextNode, "res://addons/awesome_splash/assets/icon/text_node_icon.png"
+class_name AweTextNode
 
-export var anchor: Vector2
-export var font: DynamicFont setget _set_font
-export var text: String setget _set_text, _get_text
+@export var anchor: Vector2
+@export var font: FontFile : set = _set_font
+@export var text: String : get = _get_text, set = _set_text
 
 var label: Label
+var font_size: int = 16
 
-func _init(anchor: Vector2 = Vector2.ZERO, dynamic_font: DynamicFont = null):
+func _init(anchor: Vector2 = Vector2.ZERO,dynamic_font: FontFile = null):
 	label = Label.new()
-	label.align = 1 # Center
-	label.valign = 1 # Center
+	label.add_theme_font_size_override("font_size", font_size)
+	label.horizontal_alignment = 1 # Center
+	label.vertical_alignment = 1 # Center
 	label.set("custom_fonts/font", dynamic_font)
 	add_child(label)
 	self.anchor = anchor
@@ -41,11 +44,13 @@ func _get_text() -> String:
 
 
 #func _draw():
-#	draw_rect(Rect2(-5, -5, 10, 10), Color.blue)
+#	draw_rect(Rect2(-5, -5, 10, 10), Color.BLUE)
 
+func update_font_size(size: int):
+	label.add_theme_font_size_override("font_size", size)
 
 func get_true_size() -> Vector2:
-	return Vector2(label.rect_size.x, label.rect_size.y * 0.64)
+	return Vector2(label.size.x, label.size.y * 0.64)
 
 
 func get_coordinates_top_left_char() -> Vector2:
@@ -54,17 +59,17 @@ func get_coordinates_top_left_char() -> Vector2:
 
 
 func _update_layout():
-	# I don't know why label.rect_size.x alway == 0.0 after set text.
-	# I remove and add again to get correct rect_size.x :((
+	# I don't know why label.size.x alway == 0.0 after set text.
+	# I remove and add again to get correct size.x :((
 	remove_child(label)
 	add_child(label)
 	
-	var label_rect = label.rect_size
+	var label_rect = label.size
 	var true_size = get_true_size()
 	
 	var x = -(label_rect.x - true_size.x) / 2.0 - true_size.x * anchor.x
 	var y = -(label_rect.y - true_size.y) / 2.0 - true_size.y * anchor.y
-	label.rect_position = Vector2(x, y)
+	label.position = Vector2(x, y)
 
 
 # CHUA TEST LAI
@@ -78,8 +83,8 @@ func update_anchor(new_anchor: Vector2):
 	var shift_x = true_size.x * diff_anchor.x
 	var shift_y = true_size.y * diff_anchor.y
 	
-	label.rect_position.x -= shift_x
-	label.rect_position.y -= shift_y
+	label.position.x -= shift_x
+	label.position.y -= shift_y
 	
 	position.x += shift_x
 	position.y += shift_y

@@ -5,7 +5,7 @@ var on_target: Node
 var is_waiting_finished: bool
 
 
-func _init(action: GDAction, on_target: Node, is_waiting_finished: bool, gd_utils: Node):
+func _init(action: GDAction,on_target: Node,is_waiting_finished: bool,gd_utils: Node):
 	super(gd_utils)
 	self.run_action = action
 	self.on_target = on_target

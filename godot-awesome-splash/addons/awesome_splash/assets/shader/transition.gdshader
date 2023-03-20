@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform int transition_type = 0;
-uniform vec4 color : hint_color = vec4(1, 1, 1, 1);
+uniform vec4 color : source_color = vec4(1, 1, 1, 1);
 uniform float diamond_size: hint_range(0, 1) = 0;
 uniform float blur_intensity: hint_range(0, 32) = 4.0;
 uniform float min_pixel: hint_range(1, 256) = 1;

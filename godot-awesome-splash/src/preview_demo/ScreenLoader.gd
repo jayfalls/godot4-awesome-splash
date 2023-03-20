@@ -7,7 +7,7 @@ const PATH_DEMO_COLLECTION = "res://src/demo_collection/"
 # Empty value mean load all demo.
 var testing_demo_name = ""
 
-var list_demo = []
+var list_demo: Array[PackedScene] = []
 var index = 0
 
 
@@ -43,11 +43,11 @@ func back():
 
 
 func _get_list_folder_demo(path) -> Array:
-	var dir = Directory.new()
+	var dir = DirAccess.open(path)
 	var list_dir = []
 	
-	if dir.open(path) == OK:
-		dir.list_dir_begin()
+	if dir:
+		dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 		var file_name = dir.get_next()
 		
 		while file_name != "":
@@ -63,7 +63,7 @@ func _get_list_folder_demo(path) -> Array:
 
 func _load_all_collection_demo():
 	var list_demo_folder = []
-	if testing_demo_name.empty():
+	if testing_demo_name.is_empty():
 		list_demo_folder = _get_list_folder_demo(PATH_DEMO_COLLECTION)
 	else:
 		list_demo_folder = [testing_demo_name]
@@ -71,5 +71,5 @@ func _load_all_collection_demo():
 	list_demo_folder.sort()
 	for folder in list_demo_folder:
 		var demo_path = "%s%s/splash_screen.tscn" % [PATH_DEMO_COLLECTION, folder]
-		print("loading splash screen: %s" % demo_path)
+
 		list_demo.append(load(demo_path))

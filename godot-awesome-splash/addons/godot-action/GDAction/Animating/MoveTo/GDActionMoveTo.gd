@@ -4,7 +4,7 @@ var x # float or null
 var y # float or null
 
 
-func _init(x, y, duration: float, gd_utils: Node):
+func _init(x,y,duration: float,gd_utils: Node):
 	super(duration, gd_utils)
 	self.x = x
 	self.y = y

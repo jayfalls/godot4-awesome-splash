@@ -1,7 +1,7 @@
 extends Node
 
-#export(bool) var is_skip_appear_transition = false
-#export(bool) var is_skip_disappear_transition = false
+#export var is_skip_appear_transition: bool = false
+#export var is_skip_disappear_transition: bool = false
 
 
 #For this example I will wait 2s with this screen
@@ -9,7 +9,7 @@ extends Node
 # This func will auto call from Splash
 func _custom_splash_did_appear():
 	var time_in_seconds = 2
-	yield(get_tree().create_timer(time_in_seconds), "timeout")
+	await get_tree().create_timer(time_in_seconds).timeout
 	
 	var container = sp.get_current_splash_container()
 	container.transition_next_screen()

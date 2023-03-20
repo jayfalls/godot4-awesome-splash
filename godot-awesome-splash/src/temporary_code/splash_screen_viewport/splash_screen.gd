@@ -1,11 +1,11 @@
 extends AweSplashScreenViewport
 
-onready var logo_container := $ViewportContainer/Viewport/AspectNode/LogoContainer
-onready var logo := $ViewportContainer/Viewport/AspectNode/LogoContainer/Logo
+@onready var logo_container := $SubViewportContainer/SubViewport/AspectNode/LogoContainer
+@onready var logo := $SubViewportContainer/SubViewport/AspectNode/LogoContainer/Logo
 
-onready var info_node := $ViewportContainer/Viewport/AspectNode/InfoNode
-onready var title_node := $ViewportContainer/Viewport/AspectNode/TitleNode
-onready var bg_color := $CanvasLayer/ColorRect
+@onready var info_node := $SubViewportContainer/SubViewport/AspectNode/InfoNode
+@onready var title_node := $SubViewportContainer/SubViewport/AspectNode/TitleNode
+@onready var bg_color := $CanvasLayer/ColorRect
 
 const LOGO_PATH := "res://src/temporary_code/splash_screen_viewport/logo.png"
 const TITLE := "GODOT"
@@ -24,7 +24,7 @@ func get_name() -> String:
 	return "Zoom"
 
 func _ready():
-	._ready()
+	super._ready()
 
 
 func config():

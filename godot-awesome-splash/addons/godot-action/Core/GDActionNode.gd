@@ -7,7 +7,7 @@ enum NodeType {
 }
 
 signal finished_action_signal(action_node)
-signal cancelled(action_node)
+signal canceled(action_node)
 
 var delay = 0.0
 var current_time = 0.0
@@ -26,7 +26,7 @@ var node_id: int # use save in cache
 var node_type = NodeType.UNKNOW
 
 
-func _init(action, key: String, node: Node):
+func _init(action,key: String,node: Node):
 	self.action = action
 	self.key = key
 	self.node = node
@@ -40,7 +40,7 @@ func _init(action, key: String, node: Node):
 		node_type = NodeType.NODE_2D
 	
 	finished_action_signal.connect(action._on_action_node_completed)
-	cancelled.connect(action._on_action_node_cancelled)
+	canceled.connect(action._on_action_node_cancelled)
 
 
 func _ready():
@@ -61,7 +61,7 @@ func cancel():
 	set_process(false)
 	is_done = true
 	action_done()
-	cancelled.emit(self)
+	canceled.emit(self)
 
 
 func _run():

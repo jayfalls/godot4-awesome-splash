@@ -13,7 +13,7 @@ func _update_key_if_need(key: String) -> String:
 	return _create_key_by_parent_key(key)
 
 
-func _init(selector: String, args: Array, on_target: Node, gd_utils: Node):
+func _init(selector: String,args: Array,on_target: Node,gd_utils: Node):
 	super(gd_utils)
 	self.selector = selector
 	self.args = args

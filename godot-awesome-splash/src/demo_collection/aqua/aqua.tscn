@@ -1,0 +1,363 @@
+[gd_scene load_steps=12 format=3 uid="uid://c6xk272h2qtyq"]
+
+[ext_resource type="Script" path="res://src/demo_collection/aqua/splash_screen.gd" id="1_sgthf"]
+[ext_resource type="PackedScene" path="res://addons/awesome_splash/core/AspectNode.tscn" id="2_25tj6"]
+[ext_resource type="Script" path="res://addons/awesome_splash/text_node/AweListTextNode.gd" id="3_ctf4k"]
+[ext_resource type="FontFile" uid="uid://2tm150eprpdt" path="res://src/demo_collection/aqua/assets/TitleFont.tres" id="4_legwg"]
+[ext_resource type="Script" path="res://addons/awesome_splash/text_node/AweTextNode.gd" id="5_pcqk0"]
+[ext_resource type="FontFile" uid="uid://btj8vdo5oy8us" path="res://addons/awesome_splash/assets/font/RobotoCondensed-Light.ttf" id="6_2l68n"]
+[ext_resource type="Texture2D" uid="uid://b4vrnta0ve3j1" path="res://src/temporary_code/splash_screen/logo.png" id="7_ckwoq"]
+[ext_resource type="Texture2D" uid="uid://calghw8q1qqhb" path="res://src/demo_collection/aqua/assets/wave.png" id="8_a8des"]
+
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("6_2l68n")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="Shader" id="3"]
+code = "shader_type canvas_item;
+
+void fragment() {
+    vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
+	vec2 center = vec2(0.5, 0.5);
+	float r2 = (UV.x - center.x) * (UV.x - center.x) + (UV.y - center.y) * (UV.y - center.y);
+	if (r2 > 0.25) {
+		color.a = 0.0;
+	} else {
+		color.a = r2;
+	}
+	if (r2 >= 0.225 && r2 <= 0.25){
+		color.a = 1.0;
+	}
+    COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7wcfi"]
+shader = SubResource("3")
+
+[node name="AweSplashScreen" type="Node2D"]
+script = ExtResource("1_sgthf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(1024, 600)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AspectNode" parent="." instance=ExtResource("2_25tj6")]
+
+[node name="OutlineFrame" parent="AspectNode" index="0"]
+custom_minimum_size = Vector2(1400, 1400)
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1400.0
+offset_bottom = 1400.0
+
+[node name="Left" parent="AspectNode/OutlineFrame" index="0"]
+custom_minimum_size = Vector2(5, 1400)
+layout_mode = 0
+anchor_bottom = 0.0
+
+[node name="Right" parent="AspectNode/OutlineFrame" index="1"]
+custom_minimum_size = Vector2(5, 1400)
+layout_mode = 0
+anchor_left = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1400.0
+offset_right = 1405.0
+offset_bottom = 1400.0
+
+[node name="Top" parent="AspectNode/OutlineFrame" index="2"]
+custom_minimum_size = Vector2(1400, 5)
+layout_mode = 0
+anchor_right = 0.0
+
+[node name="Bottom" parent="AspectNode/OutlineFrame" index="3"]
+custom_minimum_size = Vector2(1400, 5)
+layout_mode = 0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 1400.0
+offset_right = 1400.0
+offset_bottom = 1405.0
+
+[node name="Wave1" type="Node2D" parent="AspectNode"]
+
+[node name="Sprite" type="Sprite2D" parent="AspectNode/Wave1"]
+position = Vector2(391.864, 2759.47)
+scale = Vector2(4.17718, 2.32124)
+texture = ExtResource("8_a8des")
+
+[node name="Sprite2" type="Sprite2D" parent="AspectNode/Wave1"]
+position = Vector2(2906.74, 2796.17)
+scale = Vector2(4.50917, 2.32124)
+texture = ExtResource("8_a8des")
+
+[node name="Sprite3" type="Sprite2D" parent="AspectNode/Wave1"]
+position = Vector2(-2248.66, 2681.41)
+scale = Vector2(3.33084, 2.32124)
+texture = ExtResource("8_a8des")
+
+[node name="ColorRect" type="ColorRect" parent="AspectNode/Wave1"]
+custom_minimum_size = Vector2(9100, 11000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3908.0
+offset_top = 3106.0
+offset_right = 5192.0
+offset_bottom = 14106.0
+mouse_filter = 2
+
+[node name="LogoContainer" type="Node2D" parent="AspectNode"]
+
+[node name="TitleNode" type="Node2D" parent="AspectNode/LogoContainer"]
+position = Vector2(0, -300)
+script = ExtResource("3_ctf4k")
+font = ExtResource("4_legwg")
+anchor = Vector2(0.5, 0.5)
+char_anchor = Vector2(0.5, 0.5)
+
+[node name="InfoNode" type="Node2D" parent="AspectNode/LogoContainer"]
+position = Vector2(0, -100)
+script = ExtResource("5_pcqk0")
+anchor = Vector2(0.5, 0.5)
+font = SubResource("2")
+
+[node name="Logo" type="TextureRect" parent="AspectNode/LogoContainer"]
+custom_minimum_size = Vector2(400, 400)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -800.0
+offset_right = 200.0
+offset_bottom = -400.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_ckwoq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Wave2" type="Node2D" parent="AspectNode"]
+
+[node name="Sprite" type="Sprite2D" parent="AspectNode/Wave2"]
+position = Vector2(369.392, 2759.47)
+scale = Vector2(4.17718, 2.32124)
+texture = ExtResource("8_a8des")
+
+[node name="Sprite2" type="Sprite2D" parent="AspectNode/Wave2"]
+position = Vector2(2884.27, 2796.17)
+scale = Vector2(4.50917, 2.32124)
+texture = ExtResource("8_a8des")
+
+[node name="Sprite3" type="Sprite2D" parent="AspectNode/Wave2"]
+position = Vector2(-2271.13, 2934.86)
+scale = Vector2(3.33084, 2.32124)
+texture = ExtResource("8_a8des")
+
+[node name="ColorRect" type="ColorRect" parent="AspectNode/Wave2"]
+custom_minimum_size = Vector2(9100, 11000)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3908.0
+offset_top = 3106.0
+offset_right = 5192.0
+offset_bottom = 14106.0
+mouse_filter = 2
+
+[node name="Sponges" type="Node2D" parent="AspectNode"]
+
+[node name="Sponge" type="Node2D" parent="AspectNode/Sponges"]
+position = Vector2(238.678, 128.231)
+
+[node name="Circle" type="ColorRect" parent="AspectNode/Sponges/Sponge"]
+material = SubResource("ShaderMaterial_7wcfi")
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+
+[node name="Sponge2" type="Node2D" parent="AspectNode/Sponges"]
+position = Vector2(482.739, 282.554)
+scale = Vector2(0.7, 0.7)
+
+[node name="Circle" type="ColorRect" parent="AspectNode/Sponges/Sponge2"]
+material = SubResource("ShaderMaterial_7wcfi")
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+
+[node name="Sponge3" type="Node2D" parent="AspectNode/Sponges"]
+position = Vector2(687.584, 71.1034)
+scale = Vector2(0.8, 0.8)
+
+[node name="Circle" type="ColorRect" parent="AspectNode/Sponges/Sponge3"]
+material = SubResource("ShaderMaterial_7wcfi")
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+
+[node name="Sponge4" type="Node2D" parent="AspectNode/Sponges"]
+position = Vector2(-184.238, 96.2029)
+scale = Vector2(0.5, 0.5)
+
+[node name="Circle" type="ColorRect" parent="AspectNode/Sponges/Sponge4"]
+material = SubResource("ShaderMaterial_7wcfi")
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+
+[node name="Sponge5" type="Node2D" parent="AspectNode/Sponges"]
+position = Vector2(-61.0258, 172.994)
+scale = Vector2(1.3, 1.3)
+
+[node name="Circle" type="ColorRect" parent="AspectNode/Sponges/Sponge5"]
+material = SubResource("ShaderMaterial_7wcfi")
+custom_minimum_size = Vector2(100, 100)
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+pivot_offset = Vector2(50, 50)
+
+[node name="Sponge6" type="Node2D" parent="AspectNode/Sponges"]
+position = Vector2(-768.719, 326.49)
+scale = Vector2(0.8, 0.8)
+
+[node name="Circle" type="ColorRect" parent="AspectNode/Sponges/Sponge6"]
+material = SubResource("ShaderMaterial_7wcfi")
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+
+[node name="Sponge7" type="Node2D" parent="AspectNode/Sponges"]
+position = Vector2(-996.084, 181.585)
+scale = Vector2(1.1, 1.1)
+
+[node name="Circle" type="ColorRect" parent="AspectNode/Sponges/Sponge7"]
+material = SubResource("ShaderMaterial_7wcfi")
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+
+[node name="Sponge8" type="Node2D" parent="AspectNode/Sponges"]
+position = Vector2(1082.86, 167.537)
+
+[node name="Circle" type="ColorRect" parent="AspectNode/Sponges/Sponge8"]
+material = SubResource("ShaderMaterial_7wcfi")
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+
+[node name="Sponge9" type="Node2D" parent="AspectNode/Sponges"]
+position = Vector2(-458.593, 62.649)
+scale = Vector2(1.2, 1.2)
+
+[node name="Circle" type="ColorRect" parent="AspectNode/Sponges/Sponge9"]
+material = SubResource("ShaderMaterial_7wcfi")
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+
+[editable path="AspectNode"]
